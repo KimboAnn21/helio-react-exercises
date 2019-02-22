@@ -4,30 +4,38 @@ import ReactDOM from "react-dom";
 import "./styles.css";
 
 class App extends React.Component {
-  state = {
-    textValue: "begin typing above"
-  };
-  handleTextChange = event =>
-    this.setState({
-      textValue: event.target.value
-    });
+state = {
+  text: 'Input'
+}
+
+sportsList = ['Soccer', 'Climbing', 'Hiking', 'Skiing', 'Snowboarding', 'Snowshoeing', 'Tennis', 'Basketball', 'Softball']
+listItems = this.sportsList.map((sport) =>
+  <li>{sport}</li>
+);
+
+
+
+
+mirrorText = (event) => this.setState({text: event.target.value})
 
   render() {
     return (
       <div className="App">
-        <div>
-          <input type="text" onChange={this.handleTextChange} />
+        Enter stuff and things: <input type="text" onChange={this.mirrorText}/>
+        <br/>
+        See the stuff and things:<p>{this.state.text}</p> 
+        <div class="keylogger">
+          Type cool stuff, again: <input type="text" onChange={this.mirrorText}/>
+          <br/>
+          See cool stuff here, again:<p>{this.state.text}</p> 
         </div>
-
-        <div>
-          <br />
-          <br />
-          Check Your Head: {this.state.textValue}
+        <div class="code list">
+          <ol>SPORTS I PLAY:
+            {this.listItems}
+          </ol>
         </div>
       </div>
     );
   }
-}
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+} 
+export default App;
